@@ -10,8 +10,6 @@ class OtpBinding extends Bindings {
       Get.lazyPut<UserRepository>(() => UserRepository());
     }
 
-    Get.lazyPut<OtpController>(
-          () => OtpController(Get.find<UserRepository>()),
-    );
+    Get.lazyPut<OtpController>(() => OtpController());
   }
 }

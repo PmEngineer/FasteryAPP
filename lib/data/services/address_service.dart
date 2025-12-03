@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/network/api_call.dart';
 import '../models/address_model.dart';

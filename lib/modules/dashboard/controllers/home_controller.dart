@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import '../../../core/helpers/location_helper.dart';
-import '../../../data/models/address_model.dart';
 import '../../../data/services/address_service.dart';
 import '../models/dashboard_section_model.dart';
 

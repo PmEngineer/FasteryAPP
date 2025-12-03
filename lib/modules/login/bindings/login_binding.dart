@@ -8,8 +8,6 @@ class LoginBinding extends Bindings {
     if (!Get.isRegistered<UserRepository>()) {
       Get.lazyPut<UserRepository>(() => UserRepository());
     }
-    Get.lazyPut<LoginController>(
-          () => LoginController(Get.find<UserRepository>()),
-    );
+    Get.lazyPut<LoginController>(() => LoginController());
   }
 }

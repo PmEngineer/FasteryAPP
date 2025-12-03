@@ -2,7 +2,6 @@ import 'package:fastery/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/constants/app_colors.dart';
 import '../../../core/routes/app_routes.dart';
 import '../controllers/login_controller.dart';
 import 'widgets/custom_mobile_input_field.dart';

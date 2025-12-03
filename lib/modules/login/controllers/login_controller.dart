@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../data/repositories/user_repository.dart';
 import '../../../core/utils/app_utilities.dart'; // Import utility for SnackBar
 
 class LoginController extends GetxController {
-  final UserRepository _userRepository;
-
-  LoginController(this._userRepository);
+  LoginController();
 
   // State for the mobile number input
   final mobileNumberController = TextEditingController();
@@ -26,7 +23,10 @@ class LoginController extends GetxController {
     final mobileNumber = mobileNumberController.text;
 
     if (mobileNumber.isEmpty) {
-      AppUtilities.showErrorSnackBar('Input Required', 'Please enter your mobile number.');
+      AppUtilities.showErrorSnackBar(
+        'Input Required',
+        'Please enter your mobile number.',
+      );
       return;
     }
 
@@ -45,7 +45,6 @@ class LoginController extends GetxController {
 
       // Navigate to OTP verification screen (if one existed)
       // Get.toNamed(Routes.OTP_VERIFICATION);
-
     } catch (e) {
       // Handle API errors
       // Get.back(); // Close loading indicator
