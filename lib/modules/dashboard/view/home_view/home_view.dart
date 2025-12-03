@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
       body: Stack(
         children: [
           Obx(
-                () => CustomScrollView(
+                () =>    CustomScrollView(
               slivers: [
                 // --- 1. SLIVER APP BAR ---
                 SliverAppBar(
