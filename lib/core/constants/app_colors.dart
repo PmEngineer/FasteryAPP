@@ -33,4 +33,12 @@ abstract class AppColors {
 
   /// Standard light grey for borders or separators.
   static Color lightGrey = Colors.grey.shade200;
+
+  static const Color kPrimaryRed = Color(0xFFF53B57); // Main CTA button and item decrement
+  static const Color kPrimaryGreen = Color(0xFF4CAF50); // Savings and offers text
+  static const Color kPurpleCard = Color(0xFF8E24AA); // Color for NO FEES card background elements
+  static const Color kBackgroundColor = Color(0xFFF7F7F7);
+  static const Color kLightBorder = Color(0xFFE0E0E0);
+  static const Color kDarkText = Color(0xFF1E1E1E);
+  static const Color kHintText = Color(0xFF757575);
 }

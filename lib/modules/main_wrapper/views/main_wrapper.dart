@@ -1,9 +1,12 @@
+import 'package:fastery/modules/cart/views/cart_screen.dart';
+import 'package:fastery/modules/category/view/category_view.dart';
+import 'package:fastery/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../fastery/view/fastery_view.dart';
-import '../view/home_view/home_view.dart';
-import '../view/widgets/bottom_nav_item.dart';
+import '../../dashboard/view/home_view/home_view.dart';
+import '../../dashboard/view/widgets/bottom_nav_item.dart';
 
 class MainController extends GetxController {
   var selectedIndex = 0.obs;
@@ -11,8 +14,9 @@ class MainController extends GetxController {
   final List<Widget> pages = [
     const HomeView(),
     const FasteryView(),
-    const HomeView(),
-    const FasteryView(),
+    const CategoryView(),
+    // const ProfileView(),
+    CartScreen()
   ];
 
   void changePage(int index) {
@@ -29,18 +33,21 @@ class MainWrapper extends StatelessWidget {
     // Initialize the controller
     final MainController controller = Get.put(MainController());
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      // The body uses Obx to react to index changes and switch the screen
-      body: Obx(
-            () => IndexedStack(
-          index: controller.selectedIndex.value,
-          children: controller.pages,
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        // The body uses Obx to react to index changes and switch the screen
+        body: Obx(
+              () => IndexedStack(
+            index: controller.selectedIndex.value,
+            children: controller.pages,
+          ),
         ),
+      
+        // The bottomNavigationBar property of Scaffold is the cleanest way
+        bottomNavigationBar: _buildFloatingBottomBar(controller),
       ),
-
-      // The bottomNavigationBar property of Scaffold is the cleanest way
-      bottomNavigationBar: _buildFloatingBottomBar(controller),
     );
   }
 
@@ -72,7 +79,7 @@ class MainWrapper extends StatelessWidget {
             ),
             BottomNavItem(
               Icons.category,
-              'Instamart',
+              'Fastery',
               isActive: controller.selectedIndex.value == 1,
               onTap: () => controller.changePage(1),
             ),
@@ -84,7 +91,7 @@ class MainWrapper extends StatelessWidget {
             ),
             BottomNavItem(
               Icons.person,
-              'Account',
+              'Cart',
               isActive: controller.selectedIndex.value == 3,
               onTap: () => controller.changePage(3),
             ),

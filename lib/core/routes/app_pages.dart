@@ -1,3 +1,6 @@
+import 'package:fastery/modules/category/bindings/category_binding.dart';
+import 'package:fastery/modules/category/view/category_view.dart';
+import 'package:fastery/modules/main_wrapper/views/main_wrapper.dart';
 import 'package:fastery/modules/login/bindings/login_binding.dart';
 import 'package:fastery/modules/login/views/login_verification_view.dart';
 import 'package:fastery/modules/otp/bindings/otp_binding.dart';
@@ -5,12 +8,14 @@ import 'package:fastery/modules/otp/views/otp_verification_view.dart';
 import 'package:get/get.dart';
 import '../../modules/dashboard/bindings/home_binding.dart';
 import '../../modules/dashboard/view/home_view/home_view.dart';
+import '../../modules/main_wrapper/bindings/main_wrapper_binding.dart';
 import '../../modules/profile/bindings/profile_binding.dart';
+import '../../modules/shop/bindings/shop_details_binding.dart';
+import '../../modules/shop/views/shop_details_view.dart';
 import 'app_routes.dart';
 import 'package:fastery/modules/splash_screen/views/splash_screen.dart';
 import 'package:fastery/modules/splash_screen/bindings/splash_binding.dart';
 import 'package:fastery/modules/profile/views/profile_view.dart';
-
 
 class AppPages {
   static const INITIAL = Routes.SPLASH;
@@ -37,10 +42,25 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
+      name: Routes.MAIN_WRAPPER,
+      page: () => MainWrapper(),
+      binding: MainWrapperBinding(),
+    ),
+    GetPage(
+      name: Routes.CATEGORY,
+      page: () => CategoryView(),
+      binding: CategoryBinding(),
+    ),
+    GetPage(
       name: Routes.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
-    )
+    ),
+    GetPage(
+      name: Routes.SHOPDETAILS,
+      page: () => const ShopDetailsView(),
+      binding: HomeBinding(),
+    ),
   ];
 }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppUtilities {
-  // 1. GetX SnackBar
   static void showErrorSnackBar(String title, String message) {
     Get.snackbar(
       title,
@@ -21,7 +20,6 @@ class AppUtilities {
     return Get.defaultDialog<bool>(
       title: title,
       middleText: middleText,
-      // Custom content can go here instead of middleText
       // content: Text('Are you sure?'),
       textConfirm: 'Confirm',
       textCancel: 'Cancel',

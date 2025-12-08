@@ -1,4 +1,6 @@
+import 'package:fastery/modules/category_items/views/category_items_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../models/dashboard_section_model.dart';
@@ -49,19 +51,24 @@ class GridCategorySection extends StatelessWidget {
               return Column(
                 children: [
                   Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.lightGrey.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.lightGrey),
-                      ),
-                      child: Center(
-                        child: Image.network(
-                          item.imageUrl,
-                          height: 60,
-                          errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.shopping_bag_outlined,
-                              size: 40, color: AppColors.textGrey),
+                    child: GestureDetector(
+                      onTap : (){
+                        Get.to(() => CategoryItemView(title: item.title,));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.lightGrey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: AppColors.lightGrey),
+                        ),
+                        child: Center(
+                          child: Image.network(
+                            item.imageUrl,
+                            height: 60,
+                            errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.shopping_bag_outlined,
+                                size: 40, color: AppColors.textGrey),
+                          ),
                         ),
                       ),
                     ),

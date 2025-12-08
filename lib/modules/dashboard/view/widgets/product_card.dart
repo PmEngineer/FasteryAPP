@@ -1,9 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// set bottom bar and increment and decrement in product card also
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../data/models/product_model.dart';
+import '../../../cart/controllers/cart_controller.dart';
 
 class ProductCard extends StatelessWidget {
+  final CartController cartController = Get.find<CartController>();
   final String title;
   final String description;
   final String weight;
@@ -14,7 +19,7 @@ class ProductCard extends StatelessWidget {
   final bool isBestseller;
   final VoidCallback onTap;
 
-  const ProductCard({
+  ProductCard({
     super.key,
     required this.title,
     required this.description,
@@ -27,6 +32,83 @@ class ProductCard extends StatelessWidget {
     required this.onTap,
   });
 
+  // Helper method to create the product instance once
+  Product get productInstance => Product.fromCard(
+    title: title,
+    description: description,
+    weight: weight,
+    price: price,
+    originalPrice: originalPrice,
+    discount: discount,
+    imageUrl: imageUrl,
+    isBestseller: isBestseller,
+  );
+
+  Widget _buildCartControls() {
+    final quantity = cartController.getProductQuantity(productInstance);
+
+    if (quantity == 0) {
+      // Show Add button
+      return GestureDetector(
+        onTap: () {
+          cartController.addItemToCart(productInstance);
+        },
+        child: Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(Icons.add, color: AppColors.primaryPurple, size: 18),
+        ),
+      );
+    } else {
+      // Show Quantity Picker (Increment/Decrement)
+      return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.primaryPurple.withOpacity(0.5)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Decrement Button
+            GestureDetector(
+              onTap: () => cartController.removeItemFromCart(productInstance),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Icon(quantity == 1 ? Icons.delete_outline : Icons.remove,
+                    color: AppColors.primaryPurple, size: 18),
+              ),
+            ),
+
+            // Quantity Display
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Text(
+                '$quantity',
+                style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textDark
+                ),
+              ),
+            ),
+
+            // Increment Button
+            GestureDetector(
+              onTap: () => cartController.addItemToCart(productInstance),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.0),
+                child: Icon(Icons.add, color: AppColors.primaryPurple, size: 18),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,17 +168,10 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                Positioned(
+                  Positioned(
                   top: 8,
                   right: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.add, color: AppColors.primaryPurple, size: 18),
-                  ),
+                  child: Obx(() => _buildCartControls()), // <--- Obx wraps the control logic
                 ),
               ],
             ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/utils/app_utilities.dart'; // Import utility for SnackBar
+import '../../../core/routes/app_routes.dart';
+import '../../../data/repositories/user_repository.dart';
 
 class LoginController extends GetxController {
-  LoginController();
+  final UserRepository _userRepository;
+
+  LoginController(this._userRepository);
 
   // State for the mobile number input
   final mobileNumberController = TextEditingController();
@@ -19,36 +22,29 @@ class LoginController extends GetxController {
   }
 
   // Function to call when GET OTP button is pressed
+  // LoginController
   void getOtp() async {
     final mobileNumber = mobileNumberController.text;
 
     if (mobileNumber.isEmpty) {
-      AppUtilities.showErrorSnackBar(
-        'Input Required',
-        'Please enter your mobile number.',
-      );
+      // Show error message
       return;
     }
 
     try {
-      // Show loading indicator (optional: use a loading.obs variable)
-      // Get.dialog(const Center(child: CircularProgressIndicator()));
+      // 1. Simulate API call to request OTP
+      // Mock delay
 
-      // Simulate API call to request OTP
-      // await _userRepository.requestOtp(mobileNumber);
-      await Future.delayed(const Duration(seconds: 1)); // Mock delay
+      // 2. Navigate to OTP verification screen AFTER successful call
+      // This is where you wanted the navigation to happen
+      Get.toNamed(Routes.OTP); // <--- ADD THIS HERE
 
-      // Close loading indicator
-      // Get.back();
+      // Optional: Show success message here
+      // AppUtilities.showErrorSnackBar('Success', 'OTP sent to $mobileNumber!');
 
-      AppUtilities.showErrorSnackBar('Success', 'OTP sent to $mobileNumber!');
-
-      // Navigate to OTP verification screen (if one existed)
-      // Get.toNamed(Routes.OTP_VERIFICATION);
     } catch (e) {
       // Handle API errors
-      // Get.back(); // Close loading indicator
-      AppUtilities.showErrorSnackBar('OTP Request Failed', e.toString());
+      // AppUtilities.showErrorSnackBar('OTP Request Failed', e.toString());
     }
   }
 
