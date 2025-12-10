@@ -1,21 +1,38 @@
 import 'package:fastery/modules/cart/views/cart_screen.dart';
 import 'package:fastery/modules/category/view/category_view.dart';
 import 'package:fastery/modules/profile/views/profile_view.dart';
+import 'package:fastery/modules/service/views/service_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../fastery/view/fastery_view.dart';
+
+// Import the controllers that are causing the crash
+import '../../../core/constants/app_colors.dart';
 import '../../dashboard/view/home_view/home_view.dart';
 import '../../dashboard/view/widgets/bottom_nav_item.dart';
+import '../../service/controllers/service_controller.dart';
+import '../../category/controllers/category_controller.dart';
+// NOTE: Make sure to import all controllers used in the 'pages' list
 
 class MainController extends GetxController {
   var selectedIndex = 0.obs;
 
+  @override
+  void onInit() {
+    // 💡 FIX: Initialize all required sub-controllers here using Get.lazyPut
+    // This ensures the controllers exist in memory before their respective
+    // views (ServiceView, CategoryView) try to access them via GetView<T>.
+    Get.lazyPut(() => ServiceController());
+    Get.lazyPut(() => CategoryController());
+    // Get.lazyPut(() => CartController()); // If CartScreen uses a controller
+    // Get.lazyPut(() => ProfileController()); // If ProfileView uses a controller
+
+    super.onInit();
+  }
+
   final List<Widget> pages = [
     const HomeView(),
-    const FasteryView(),
+    const ServiceView(),
     const CategoryView(),
-    // const ProfileView(),
     CartScreen()
   ];
 
@@ -24,7 +41,7 @@ class MainController extends GetxController {
   }
 }
 
-// 2. Main Wrapper Widget
+// 2. Main Wrapper Widget (No change needed here)
 class MainWrapper extends StatelessWidget {
   const MainWrapper({super.key});
 
@@ -36,6 +53,7 @@ class MainWrapper extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
+        // ... (rest of the MainWrapper code remains the same)
         backgroundColor: AppColors.background,
         // The body uses Obx to react to index changes and switch the screen
         body: Obx(
@@ -44,14 +62,12 @@ class MainWrapper extends StatelessWidget {
             children: controller.pages,
           ),
         ),
-      
+
         // The bottomNavigationBar property of Scaffold is the cleanest way
         bottomNavigationBar: _buildFloatingBottomBar(controller),
       ),
     );
   }
-
-  // 3. Build the Bottom Bar using the custom widget
   Widget _buildFloatingBottomBar(MainController controller) {
     return Container(
       height: 70,

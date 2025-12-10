@@ -16,7 +16,7 @@ class RestaurantListScreen extends StatelessWidget {
       deliveryTime: '25-30 mins',
       distance: '1.2 km',
       imageUrl: 'https://www.thecityofldn.com/wp-content/uploads/2023/04/Leadenhall-65-Luisa-Tona-reduced-2000x1335.jpg', // Placeholder
-      itemPrice: 'AT ₹59',
+      itemPrice: 'AT ₹59', categoryTag: 'Food',
     ),
     Restaurant(
       name: 'Pizza Hut',
@@ -27,7 +27,7 @@ class RestaurantListScreen extends StatelessWidget {
       distance: '1.1 km',
       imageUrl: 'assets/pizza_hut.jpg', // Placeholder
       itemPrice: 'AT ₹99',
-      isFeatured: true,
+      isFeatured: true, categoryTag: 'Food',
     ),
   ];
 
@@ -54,7 +54,7 @@ class RestaurantListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
         onTap: (){
-          Get.toNamed(Routes.SHOPDETAILS);
+          Get.toNamed(Routes.SHOPDETAILS,);
         },
         child: IntrinsicHeight(
           child: Row(

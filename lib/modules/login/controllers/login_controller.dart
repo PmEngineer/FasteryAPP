@@ -4,10 +4,6 @@ import '../../../core/routes/app_routes.dart';
 import '../../../data/repositories/user_repository.dart';
 
 class LoginController extends GetxController {
-  final UserRepository _userRepository;
-
-  LoginController(this._userRepository);
-
   // State for the mobile number input
   final mobileNumberController = TextEditingController();
 

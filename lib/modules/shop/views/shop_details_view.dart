@@ -1,3 +1,4 @@
+import 'package:fastery/core/widgets/custom_app_bar.dart';
 import 'package:fastery/modules/cart/views/widgets/mini_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class ShopDetailsView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text("Shop Details", style: GoogleFonts.poppins(),), backgroundColor: Colors.white,),
+      appBar: CustomAppBar(title: "Shop Details"),
       body: SingleChildScrollView(
         child: Column(
           children: [

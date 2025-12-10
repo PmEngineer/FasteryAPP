@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_colors.dart';
 import 'widgets/category_sidebar.dart';
@@ -20,7 +21,9 @@ class CategoryItemView extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColors.textDark),
-          onPressed: () {},
+          onPressed: () {
+            Get.back();
+          },
         ),
         title: Text(
           title,

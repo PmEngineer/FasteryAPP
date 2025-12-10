@@ -1,3 +1,4 @@
+import 'package:fastery/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -80,28 +81,7 @@ class CategoryView extends GetView<CategoryController> {
     // You must ensure CategoryController is initialized via binding before this view is built.
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        title: Text(
-          'Categories',
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: AppColors.kDarkText,
-          ),
-        ),
-        centerTitle: false,
-        backgroundColor: AppColors.background,
-        elevation: 0,
-        leading: Icon(Icons.arrow_back_ios,size: 20, color: AppColors.kDarkText),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: AppColors.kDarkText),
-            onPressed: () {
-              Get.snackbar('Search', 'Search action tapped');
-            },
-          ),
-        ],
-      ),
+      appBar: CustomAppBar(title: "Categories"),
       body: Obx(
             () {
           // Splitting the mock data into two sections for demonstration purposes

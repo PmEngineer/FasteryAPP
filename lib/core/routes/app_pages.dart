@@ -1,10 +1,16 @@
+import 'package:fastery/modules/all_items/bindings/all_items_binding.dart';
+import 'package:fastery/modules/all_items/views/all_items_view.dart';
 import 'package:fastery/modules/category/bindings/category_binding.dart';
 import 'package:fastery/modules/category/view/category_view.dart';
+import 'package:fastery/modules/location_selection/bindings/location_selection_binding.dart';
+import 'package:fastery/modules/location_selection/views/location_selection_view.dart';
 import 'package:fastery/modules/main_wrapper/views/main_wrapper.dart';
 import 'package:fastery/modules/login/bindings/login_binding.dart';
 import 'package:fastery/modules/login/views/login_verification_view.dart';
 import 'package:fastery/modules/otp/bindings/otp_binding.dart';
 import 'package:fastery/modules/otp/views/otp_verification_view.dart';
+import 'package:fastery/modules/service/bindings/service_binding.dart';
+import 'package:fastery/modules/service/views/service_view.dart';
 import 'package:get/get.dart';
 import '../../modules/dashboard/bindings/home_binding.dart';
 import '../../modules/dashboard/view/home_view/home_view.dart';
@@ -47,6 +53,18 @@ class AppPages {
       binding: MainWrapperBinding(),
     ),
     GetPage(
+      name: Routes.LOCATION_SELECTION,
+      page: () => const LocationSelectionView(),
+      binding: LocationSelectionBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: Routes.SERVICES,
+      page: () => const ServiceView(),
+      binding: ServiceBinding(),
+    ),
+    GetPage(
       name: Routes.CATEGORY,
       page: () => CategoryView(),
       binding: CategoryBinding(),
@@ -55,11 +73,22 @@ class AppPages {
       name: Routes.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
     ),
     GetPage(
       name: Routes.SHOPDETAILS,
       page: () => const ShopDetailsView(),
       binding: HomeBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: Routes.ALLITEMS,
+      page: () => const AllItemsView(),
+      binding: AllItemsBinding(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 300),
     ),
   ];
 }

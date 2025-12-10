@@ -53,7 +53,13 @@ class GridCategorySection extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap : (){
-                        Get.to(() => CategoryItemView(title: item.title,));
+                        Get.to(
+                              () => CategoryItemView(title: item.title),
+                          // ✅ Apply the right-to-left transition here:
+                          transition: Transition.rightToLeft,
+                          // Optional: Set a smooth duration
+                          duration: const Duration(milliseconds: 300),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(

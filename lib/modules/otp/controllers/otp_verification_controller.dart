@@ -7,9 +7,7 @@ import '../../../core/routes/app_routes.dart';
 import '../../../data/repositories/user_repository.dart';
 
 class OtpController extends GetxController {
-  final UserRepository _userRepository;
 
-  OtpController(this._userRepository);
 
   // Reactive State
   final otp = List.generate(4, (_) => TextEditingController()).obs;

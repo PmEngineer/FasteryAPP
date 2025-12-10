@@ -1,3 +1,4 @@
+import 'package:fastery/core/widgets/custom_app_bar.dart';
 import 'package:fastery/modules/cart/views/widgets/no_item_found.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,47 +35,7 @@ class CartScreen extends StatelessWidget {
             pinned: true,
             toolbarHeight: 10 + statusBarHeight,
             automaticallyImplyLeading: false,
-            flexibleSpace: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: statusBarHeight),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap:(){
-                              Navigator.pop(context);
-                            },
-                              child: const Icon(Icons.arrow_back_ios, size: 20, color: AppColors.kDarkText)),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Cart',
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.kDarkText,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Row(
-                        children: [
-                          Icon(Icons.favorite_border, color: AppColors.kHintText),
-                          SizedBox(width: 12),
-                          Icon(Icons.share_outlined, color: AppColors.kHintText),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                // Savings Banner
-                // const SavingsBanner(),
-              ],
-            ),
+            flexibleSpace: CustomAppBar(title: "Cart")
           ),
 
           Obx(() {

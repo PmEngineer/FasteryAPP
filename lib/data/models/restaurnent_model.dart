@@ -1,3 +1,5 @@
+// lib/data/models/restaurnent_model.dart (Mandatory Update)
+
 class Restaurant {
   final String name;
   final String category;
@@ -6,9 +8,12 @@ class Restaurant {
   final String deliveryTime;
   final String distance;
   final String imageUrl;
-  final String itemPrice; // e.g., 'AT ₹59'
-  final bool isFeatured; // For the 'Best in Pizza' badge
+  final String itemPrice;
+  final bool isFeatured;
+  // ✅ ADD THIS FIELD
+  final String categoryTag;
 
+  // ✅ UPDATE THE CONSTRUCTOR
   Restaurant({
     required this.name,
     required this.category,
@@ -19,5 +24,6 @@ class Restaurant {
     required this.imageUrl,
     required this.itemPrice,
     this.isFeatured = false,
+    required this.categoryTag, // Add this required parameter
   });
 }

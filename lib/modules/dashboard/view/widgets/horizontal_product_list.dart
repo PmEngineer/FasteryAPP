@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart'; // Import Get for navigation
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../../product/views/product_details_view.dart';
 import '../../models/dashboard_section_model.dart';
 import 'product_card.dart';
@@ -35,12 +36,17 @@ class HorizontalProductList extends StatelessWidget {
                     color: AppColors.textDark,
                   ),
                 ),
-                Text(
-                  'See All >',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: AppColors.primaryRed,
-                    fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(Routes.ALLITEMS);
+                  },
+                  child: Text(
+                    'See All >',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: AppColors.primaryRed,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ],
