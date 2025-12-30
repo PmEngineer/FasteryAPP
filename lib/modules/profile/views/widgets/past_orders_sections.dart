@@ -312,12 +312,12 @@ class _OrderCard extends StatelessWidget {
             children: [
               Text(
                 'Ordered: ${order.orderedAt}',
-                style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey),
+                style: GoogleFonts.poppins(fontSize: 10, color: Colors.grey),
               ),
               const Spacer(),
               Text(
                 'Bill Total: ${order.billTotal}',
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w700),
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w700, fontSize: 12),
               ),
             ],
           ),

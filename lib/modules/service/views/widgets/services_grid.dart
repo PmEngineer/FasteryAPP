@@ -6,14 +6,9 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../data/models/service_model.dart';
 import '../../controllers/service_controller.dart';
 
-// =========================================================================
-// 💡 NEW WIDGET: ExploreServicesSection
-// This class contains the 'Explore all services' header and the main GridView.
-// =========================================================================
 class ExploreServicesSection extends GetView<ServiceController> {
   const ExploreServicesSection({super.key});
 
-  // Re-used Service Grid Item (Copied from ServiceView for completeness)
   Widget _buildServiceItem(ServiceModel service) {
     return GestureDetector(
       // onTap: () => controller.onServiceTap(service),
@@ -89,7 +84,6 @@ class ExploreServicesSection extends GetView<ServiceController> {
 
   @override
   Widget build(BuildContext context) {
-    // We use Obx here to listen to the controller.services list
     return Obx(() {
       final mainServices = controller.services.take(8).toList();
 

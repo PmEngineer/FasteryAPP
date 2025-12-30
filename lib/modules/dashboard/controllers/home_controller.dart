@@ -11,6 +11,7 @@ class HomeController extends GetxController {
 
   final locationText = 'Fetching location...'.obs;
   final extraHeaderHeight = 0.0.obs;
+  final searchText = "".obs;
 
   // --- New State Variables ---
   final selectedCategoryIndex = 0.obs;
@@ -30,6 +31,11 @@ class HomeController extends GetxController {
       return categories[selectedCategoryIndex.value]['name'] as String;
     }
     return 'All'; // Default fallback name
+  }
+
+  void updateSearchText(String text) {
+    searchText.value = text;
+    // Logic to trigger API search can go here
   }
 
   // Getter for Dynamic Background Color

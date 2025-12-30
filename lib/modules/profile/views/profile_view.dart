@@ -1,3 +1,4 @@
+import 'package:fastery/modules/profile/views/pages/order_histroy_view.dart';
 import 'package:fastery/modules/profile/views/widgets/past_orders_sections.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -106,25 +107,42 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               children: [
                 _buildMenuItem(
-                  Icons.confirmation_number_outlined,
-                  'My Vouchers',
+                    Icons.confirmation_number_outlined,
+                    'My Vouchers',
+                        (){}
                 ),
                 const Divider(height: 1),
                 _buildMenuItem(
-                  Icons.description_outlined,
-                  'Account Statements',
+                    Icons.history_sharp,
+                    'Order History',
+                        (){
+                      Get.to(
+                            () => OrdersHistoryView(),
+                        // ✅ Apply the right-to-left transition here:
+                        transition: Transition.rightToLeft,
+                        // Optional: Set a smooth duration
+                        duration: const Duration(milliseconds: 300),
+                      );
+                    }
                 ),
                 const Divider(height: 1),
                 _buildMenuItem(
-                  Icons.business_center_outlined,
-                  'Corporate Rewards',
+                    Icons.description_outlined,
+                    'Account Statements',
+                        (){}
                 ),
                 const Divider(height: 1),
-                _buildMenuItem(Icons.school_outlined, 'Student Rewards'),
+                _buildMenuItem(
+                    Icons.business_center_outlined,
+                    'Corporate Rewards',
+                        (){}
+                ),
                 const Divider(height: 1),
-                _buildMenuItem(Icons.bookmark_border, 'My Shopy Wishlist'),
+                _buildMenuItem(Icons.school_outlined, 'Student Rewards', (){}),
                 const Divider(height: 1),
-                _buildMenuItem(Icons.favorite_border, 'Favourites'),
+                _buildMenuItem(Icons.bookmark_border, 'My Shopy Wishlist', (){}),
+                const Divider(height: 1),
+                _buildMenuItem(Icons.favorite_border, 'Favourites', (){}),
                 const Divider(height: 1),
               ],
             ),
@@ -164,9 +182,11 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
+  Widget _buildMenuItem(IconData icon, String title, VoidCallback? onTap) {
     return InkWell(
-      onTap: () => controller.onMenuTap(title),
+      // FIX: Change to directly pass the function or execute it.
+      onTap: onTap,
+      // OR, if you prefer the arrow function style: onTap: () => onTap?.call(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Row(

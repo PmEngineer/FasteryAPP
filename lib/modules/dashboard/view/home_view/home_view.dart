@@ -14,13 +14,13 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.primaryRed,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: AppColors.background,
-          body: Obx(
-                () => CustomScrollView(
+    return Obx(
+       () => Container(
+        color: controller.headerBackgroundColor,
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: AppColors.background,
+            body: CustomScrollView(
               slivers: [
                 // -------------------------------
                 // SIMPLE LOCATION APPBAR
@@ -48,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                               const Icon(Icons.access_time,
                                   color: Colors.white, size: 16),
                               const SizedBox(width: 8),
-
+      
                               Expanded(
                                 child: Text(
                                   controller.locationText.value,
@@ -60,12 +60,12 @@ class HomeView extends GetView<HomeController> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-
+      
                               const Icon(Icons.keyboard_arrow_down,
                                   color: Colors.white, size: 10),
-
+      
                               const SizedBox(width: 20),
-
+      
                               GestureDetector(
                                 onTap: () => Get.toNamed(Routes.PROFILE),
                                 child: const Icon(
@@ -81,7 +81,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                 ),
-
+      
                 // ---------------------------------------------------
                 // PINNED SEARCH + CATEGORIES — ALWAYS VISIBLE
                 // ---------------------------------------------------
@@ -89,7 +89,7 @@ class HomeView extends GetView<HomeController> {
                   pinned: true,
                   delegate: SearchCategoryHeader(controller),
                 ),
-
+      
                 // -------------------------------
                 // MAIN PAGE CONTENT
                 // -------------------------------
@@ -116,7 +116,7 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                       ),
-
+      
                       RestaurantListViewContent(),
                       const SizedBox(height: 20),
                       ExploreServicesSection(),
@@ -126,9 +126,9 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
+      
+            bottomNavigationBar: MiniCartBottomBar(),
           ),
-
-          bottomNavigationBar: MiniCartBottomBar(),
         ),
       ),
     );
